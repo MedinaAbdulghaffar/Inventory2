@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Inventory2</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="supplier_phone_number">Phone_Number</string>
+    <string name="supplier_name">Supplier Name</string>
+    <string name="quantity">Quantity</string>
+    <string name="price">Price</string>
+    <string name="product_name">Product Name</string>
+    <string name="insert_data_failed">insert data failed</string>
+    <string name="insert_data_successful">Your data inserted successfully</string>
 </resources>
