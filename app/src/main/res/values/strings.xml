@@ -8,4 +8,11 @@
     <string name="product_name">Product Name</string>
     <string name="insert_data_failed">insert data failed</string>
     <string name="insert_data_successful">Your data inserted successfully</string>
+    <string name="sale">sale</string>
+    <string name="insert_your_data">insert your data</string>
+    <string name="contactsupplier">contactSupplier</string>
+    <string name="delet_data">Delet data</string>
+    <string name="do_you_want_to_delete_data">Do you want to delete data</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
 </resources>

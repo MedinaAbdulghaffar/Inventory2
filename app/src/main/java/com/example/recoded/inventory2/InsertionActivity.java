@@ -19,6 +19,7 @@ public class InsertionActivity extends AppCompatActivity {
     EditText mSupplierName;
     EditText mSupplierPhoneNumber;
     Button saveButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +29,7 @@ public class InsertionActivity extends AppCompatActivity {
         mQuantity = findViewById(R.id.quantity_et);
         mSupplierName = findViewById(R.id.supplier_name_et);
         mSupplierPhoneNumber = findViewById(R.id.supplier_phone_number_et);
-        saveButton=findViewById(R.id.save_b);
+        saveButton = findViewById(R.id.save_b);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,32 +38,54 @@ public class InsertionActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void insert() {
+        ContentValues values = new ContentValues();
+
+        String productName = mProductName.getText().toString().trim();
+        if (!productName.isEmpty()) {
+            values.put(PRODUCT_NAME, productName);
+
+        } else {
+            mProductName.setError("required");
+
+
+        }
+        String price = mPrice.getText().toString().trim();
+
+        if (price.isEmpty()) {
+            mPrice.setError("required");
+        } else {
+            values.put(PRICE, Integer.parseInt(price));
+        }
+        String quantity = mQuantity.getText().toString().trim();
+        if (quantity.isEmpty()) {
+            mQuantity.setError("required");
+        } else {
+            values.put(QUANTITY, Integer.parseInt(quantity));
+        }
+        String supplierName = mSupplierName.getText().toString().trim();
+        if (supplierName.isEmpty()) {
+            mSupplierName.setError("required");
+        } else {
+            values.put(SUPPLIER, supplierName);
+        }
+        String supplierPhoneNumber = mSupplierPhoneNumber.getText().toString().trim();
+        if (supplierPhoneNumber.isEmpty()) {
+            mSupplierPhoneNumber.setError("required");
+        } else {
+            values.put(SUPPLIER_PHONE_NUMBER, Integer.parseInt(supplierPhoneNumber));
+        }
+        Uri newUri = getContentResolver().insert(CONTENT_URI, values);
+        if (newUri == null) {
+            Toast.makeText(InsertionActivity.this, R.string.insert_data_failed, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(InsertionActivity.this, getString(R.string.insert_data_successful), Toast.LENGTH_LONG).show();
+        }
 
     }
-    public void insert(){
-
-        String productName= mProductName.getText().toString().trim();
-        int price=Integer.parseInt(mPrice.getText().toString().trim());
-        int quantity=Integer.parseInt(mQuantity.getText().toString().trim());
-        String supplierName=mSupplierName.getText().toString().trim();
-        int supplierPhoneNumber=Integer.parseInt(mSupplierPhoneNumber.toString().trim());
-        ContentValues values=new ContentValues();
-        values.put(PRODUCT_NAME,productName);
-        values.put(PRICE,price);
-        values.put(QUANTITY,quantity);
-        values.put(SUPPLIER,supplierName);
-        values.put(SUPPLIER_PHONE_NUMBER,supplierPhoneNumber);
-
-        Uri newUri=getContentResolver().insert(CONTENT_URI,values);
-        if(newUri==null) {
-            Toast.makeText(this, R.string.insert_data_failed,Toast.LENGTH_LONG).show();
-        }
-        else {
-            Toast.makeText(this,getString(R.string.insert_data_successful),Toast.LENGTH_LONG).show();
-        }
-
-        }
-    }
+}
 
 
 
