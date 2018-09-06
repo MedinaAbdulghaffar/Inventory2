@@ -39,10 +39,11 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent=new Intent(MainActivity.this,InsertionActivity.class);
                 startActivity(intent);
 
-                android.support.v4.app.LoaderManager loaderManager=getSupportLoaderManager();
-                loaderManager.initLoader(0,null,cursorLoader);
             }
         });
+
+        android.support.v4.app.LoaderManager loaderManager=getSupportLoaderManager();
+        loaderManager.initLoader(0,null,cursorLoader);
         }
     private Cursor getCursorData()
     {

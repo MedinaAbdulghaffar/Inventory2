@@ -45,7 +45,7 @@ public class InventoryContentProvider extends ContentProvider {
                 cursor = readDataBase.query(TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
                 break;
             case INVENTORY_ID1:
-                selection = INVENTORY_ID1 + "=?";
+                selection = InventoryContract.InventoryEntry.ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 cursor = readDataBase.query(TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
                 break;
@@ -79,7 +79,7 @@ public class InventoryContentProvider extends ContentProvider {
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
         int match=URI_MATCHER.match(uri);
          SQLiteDatabase deletDataBase=helper.getWritableDatabase();
-         selection =INVENTORY_ID1 + "=?";
+         selection = InventoryContract.InventoryEntry.ID + "=?";
          selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
           switch (match) {
               case INVENTORY:
@@ -97,7 +97,7 @@ public class InventoryContentProvider extends ContentProvider {
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
        int match=URI_MATCHER.match(uri);
        SQLiteDatabase updateDataBase=helper.getWritableDatabase();
-        selection =INVENTORY_ID1 + "=?";
+        selection =InventoryContract.InventoryEntry.ID + "=?";
         selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
        switch (match)
        {

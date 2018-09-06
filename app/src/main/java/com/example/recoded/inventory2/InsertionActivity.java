@@ -1,6 +1,7 @@
 package com.example.recoded.inventory2;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +35,8 @@ public class InsertionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 insert();
+                Intent intent=new Intent(InsertionActivity.this,MainActivity.class);
+                startActivity(intent);
             }
         });
 

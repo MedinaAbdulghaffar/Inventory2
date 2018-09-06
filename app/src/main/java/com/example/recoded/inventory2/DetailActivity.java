@@ -38,11 +38,12 @@ public class DetailActivity extends AppCompatActivity {
         priceTv=findViewById(R.id.detail_price_tv);
         quantityTv=findViewById(R.id.detail_quantity_tv);
         supplierNameTv=findViewById(R.id.detail_supplier_tv);
-        supplierNameTv=findViewById(R.id.detail_supplier_phone_number_tv);
+        supplierPhoneNumberTv=findViewById(R.id.detail_supplier_phone_number_tv);
         contactBtn=findViewById(R.id.contact_button);
         deletBtn=findViewById(R.id.delet_button);
         increaseQuantityButton=findViewById(R.id.increase_quantity_ib);
         decreaseQuantityButton=findViewById(R.id.decrease_quantity_ib);
+
 
 
 
@@ -91,7 +92,7 @@ public class DetailActivity extends AppCompatActivity {
             cursor.close();
         }
 
-        deletBtn.setOnClickListener(new View.OnClickListener() {
+       deletBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
@@ -106,6 +107,8 @@ public class DetailActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         getContentResolver().delete(uri, null, null);
                         finish();
+                        Intent intent=new Intent(DetailActivity.this,MainActivity.class);
+                        startActivity(intent);
                     }
                 });
                 Button noBtn = deleteView.findViewById(R.id.no_b);
