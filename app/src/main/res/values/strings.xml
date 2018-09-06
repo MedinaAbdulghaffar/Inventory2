@@ -15,4 +15,6 @@
     <string name="do_you_want_to_delete_data">Do you want to delete data</string>
     <string name="yes">yes</string>
     <string name="no">no</string>
+    <string name="edit">Edit</string>
+    <string name="change_successful">your data changed successfully</string>
 </resources>

@@ -21,8 +21,15 @@
             android:name=".InventoryContentProvider"
             android:authorities="com.example.recoded.inventory2" />
 
-        <activity android:name=".InsertionActivity" android:parentActivityName=".MainActivity" android:label="Insertion" />
-        <activity android:name=".DetailActivity" android:parentActivityName=".MainActivity" android:label="Detail"></activity>
+        <activity
+            android:name=".InsertionActivity"
+            android:label="Insertion"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DetailActivity"
+            android:label="Detail"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".EditerActivity"></activity>
     </application>
 
 </manifest>

@@ -21,32 +21,33 @@ import static com.example.recoded.inventory2.InventoryContract.InventoryEntry.SU
 import static com.example.recoded.inventory2.InventoryContract.InventoryEntry.SUPPLIER_PHONE_NUMBER;
 
 public class MainActivity extends AppCompatActivity {
-   FloatingActionButton fab;
-   InventoryDbHelper helper;
-   TextView noDataTv;
-   ListView listView;
+    FloatingActionButton fab;
+    InventoryDbHelper helper;
+    TextView noDataTv;
+    ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fab=findViewById(R.id.fab);
-        noDataTv=findViewById(R.id.no_data);
-        listView=findViewById(R.id.lv);
-        helper=new InventoryDbHelper(this);
+        fab = findViewById(R.id.fab);
+        noDataTv = findViewById(R.id.no_data);
+        listView = findViewById(R.id.lv);
+        helper = new InventoryDbHelper(this);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,InsertionActivity.class);
+                Intent intent = new Intent(MainActivity.this, InsertionActivity.class);
                 startActivity(intent);
 
             }
         });
 
-        android.support.v4.app.LoaderManager loaderManager=getSupportLoaderManager();
-        loaderManager.initLoader(0,null,cursorLoader);
-        }
-    private Cursor getCursorData()
-    {
+        android.support.v4.app.LoaderManager loaderManager = getSupportLoaderManager();
+        loaderManager.initLoader(0, null, cursorLoader);
+    }
+
+    private Cursor getCursorData() {
         String[] columns = {
                 ID,
                 PRODUCT_NAME,
@@ -54,11 +55,11 @@ public class MainActivity extends AppCompatActivity {
                 QUANTITY,
                 SUPPLIER,
                 SUPPLIER_PHONE_NUMBER};
-        Cursor cursor=getContentResolver().query(CONTENT_URI,columns,null,null,null);
-        if(cursor.getCount()>0){
+        Cursor cursor = getContentResolver().query(CONTENT_URI, columns, null, null, null);
+        if (cursor.getCount() > 0) {
             noDataTv.setVisibility(View.INVISIBLE);
         }
-       return cursor;
+        return cursor;
     }
 
     protected void onStart() {
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
     }
 
-    LoaderManager.LoaderCallbacks<Cursor> cursorLoader=new LoaderManager.LoaderCallbacks<Cursor>() {
+    LoaderManager.LoaderCallbacks<Cursor> cursorLoader = new LoaderManager.LoaderCallbacks<Cursor>() {
         @Override
         public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 
@@ -91,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-          InventoryCursorAdapter adapter=new InventoryCursorAdapter(MainActivity.this,getCursorData());
-          listView.setAdapter(adapter);
-          adapter.changeCursor(getCursorData());
+            InventoryCursorAdapter adapter = new InventoryCursorAdapter(MainActivity.this, getCursorData());
+            listView.setAdapter(adapter);
+            adapter.changeCursor(getCursorData());
         }
 
         @Override

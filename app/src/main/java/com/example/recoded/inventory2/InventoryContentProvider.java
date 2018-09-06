@@ -49,8 +49,8 @@ public class InventoryContentProvider extends ContentProvider {
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 cursor = readDataBase.query(TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
                 break;
-                default:
-                    throw  new IllegalArgumentException("failed to load"+uri);
+            default:
+                throw new IllegalArgumentException("failed to load" + uri);
         }
         return cursor;
 
@@ -71,43 +71,42 @@ public class InventoryContentProvider extends ContentProvider {
             Log.e(TAG, "failed to insert row for" + uri);
             return null;
         }
-        return ContentUris.withAppendedId(uri,id);
+        return ContentUris.withAppendedId(uri, id);
     }
 
 
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
-        int match=URI_MATCHER.match(uri);
-         SQLiteDatabase deletDataBase=helper.getWritableDatabase();
-         selection = InventoryContract.InventoryEntry.ID + "=?";
-         selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
-          switch (match) {
-              case INVENTORY:
-                  break;
-              case INVENTORY_ID1:
-                  return deletDataBase.delete(TABLE_NAME, selection, selectionArgs);
+        int match = URI_MATCHER.match(uri);
+        SQLiteDatabase deletDataBase = helper.getWritableDatabase();
+        selection = InventoryContract.InventoryEntry.ID + "=?";
+        selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
+        switch (match) {
+            case INVENTORY:
+                break;
+            case INVENTORY_ID1:
+                return deletDataBase.delete(TABLE_NAME, selection, selectionArgs);
 
-              default:
-                  throw new IllegalArgumentException("Failed to delete row for " + uri);
-          }
-          return 0;
+            default:
+                throw new IllegalArgumentException("Failed to delete row for " + uri);
+        }
+        return 0;
     }
 
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
-       int match=URI_MATCHER.match(uri);
-       SQLiteDatabase updateDataBase=helper.getWritableDatabase();
-        selection =InventoryContract.InventoryEntry.ID + "=?";
+        int match = URI_MATCHER.match(uri);
+        SQLiteDatabase updateDataBase = helper.getWritableDatabase();
+        selection = InventoryContract.InventoryEntry.ID + "=?";
         selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
-       switch (match)
-       {
-           case INVENTORY:
-               break;
-           case INVENTORY_ID1:
-               return updateDataBase.update(TABLE_NAME,values,selection,selectionArgs);
-           default:
-               throw new IllegalArgumentException("failed to update"+uri);
-       }
+        switch (match) {
+            case INVENTORY:
+                break;
+            case INVENTORY_ID1:
+                return updateDataBase.update(TABLE_NAME, values, selection, selectionArgs);
+            default:
+                throw new IllegalArgumentException("failed to update" + uri);
+        }
 
         return 0;
     }

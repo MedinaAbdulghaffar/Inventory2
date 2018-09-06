@@ -17,13 +17,13 @@ import android.widget.TextView;
 import static com.example.recoded.inventory2.InventoryContract.InventoryEntry.*;
 
 public class DetailActivity extends AppCompatActivity {
-   TextView productNameTv;
-   TextView priceTv;
-   TextView quantityTv;
-   TextView supplierNameTv;
-   TextView supplierPhoneNumberTv;
-   Button contactBtn;
-   Button deletBtn;
+    TextView productNameTv;
+    TextView priceTv;
+    TextView quantityTv;
+    TextView supplierNameTv;
+    TextView supplierPhoneNumberTv;
+    Button contactBtn;
+    Button deletBtn;
     Uri uri;
     ImageButton increaseQuantityButton;
     ImageButton decreaseQuantityButton;
@@ -34,22 +34,20 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        productNameTv=findViewById(R.id.detail_product_name_tv);
-        priceTv=findViewById(R.id.detail_price_tv);
-        quantityTv=findViewById(R.id.detail_quantity_tv);
-        supplierNameTv=findViewById(R.id.detail_supplier_tv);
-        supplierPhoneNumberTv=findViewById(R.id.detail_supplier_phone_number_tv);
-        contactBtn=findViewById(R.id.contact_button);
-        deletBtn=findViewById(R.id.delet_button);
-        increaseQuantityButton=findViewById(R.id.increase_quantity_ib);
-        decreaseQuantityButton=findViewById(R.id.decrease_quantity_ib);
-
-
+        productNameTv = findViewById(R.id.detail_product_name_tv);
+        priceTv = findViewById(R.id.detail_price_tv);
+        quantityTv = findViewById(R.id.detail_quantity_tv);
+        supplierNameTv = findViewById(R.id.detail_supplier_tv);
+        supplierPhoneNumberTv = findViewById(R.id.detail_supplier_phone_number_tv);
+        contactBtn = findViewById(R.id.contact_button);
+        deletBtn = findViewById(R.id.delet_button);
+        increaseQuantityButton = findViewById(R.id.increase_quantity_ib);
+        decreaseQuantityButton = findViewById(R.id.decrease_quantity_ib);
 
 
         Intent intent = getIntent();
-         id = String.valueOf(intent.getStringExtra(ID));
-         uri = Uri.withAppendedPath(CONTENT_URI, id);
+        id = String.valueOf(intent.getStringExtra(ID));
+        uri = Uri.withAppendedPath(CONTENT_URI, id);
 
         String[] columns = {
                 ID,
@@ -74,10 +72,10 @@ public class DetailActivity extends AppCompatActivity {
                 final int supplierPhoneNumber = cursor.getInt(supplierPhoneNumberIndex);
 
                 productNameTv.setText(productNameStr);
-                priceTv.setText(price+"");
+                priceTv.setText(price + "");
                 quantityTv.setText(quantity + "");
                 supplierNameTv.setText(supplierNameStr);
-                supplierPhoneNumberTv.setText(supplierPhoneNumber+"");
+                supplierPhoneNumberTv.setText(supplierPhoneNumber + "");
 
                 contactBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -92,7 +90,7 @@ public class DetailActivity extends AppCompatActivity {
             cursor.close();
         }
 
-       deletBtn.setOnClickListener(new View.OnClickListener() {
+        deletBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
@@ -107,7 +105,7 @@ public class DetailActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         getContentResolver().delete(uri, null, null);
                         finish();
-                        Intent intent=new Intent(DetailActivity.this,MainActivity.class);
+                        Intent intent = new Intent(DetailActivity.this, MainActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -123,26 +121,29 @@ public class DetailActivity extends AppCompatActivity {
         increaseQuantityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContentValues values=new ContentValues();
-                int quantity= Integer.parseInt(quantityTv.getText().toString().trim());
-                if(quantity>0) {
+                ContentValues values = new ContentValues();
+                int quantity = Integer.parseInt(quantityTv.getText().toString().trim());
+                if (quantity > 0) {
                     quantity--;
                     values.put(QUANTITY, quantity);
                     Uri uri = Uri.withAppendedPath(CONTENT_URI, id);
                     v.getContext().getContentResolver().update(uri, values, null, null);
-                    quantityTv.setText(quantity + ""); }
-        }});
+                    quantityTv.setText(quantity + "");
+                }
+            }
+        });
         decreaseQuantityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContentValues values=new ContentValues();
-                int quantity= Integer.parseInt(quantityTv.getText().toString().trim());
-                     quantity++;
-                    values.put(QUANTITY, quantity);
-                    Uri uri = Uri.withAppendedPath(CONTENT_URI, id);
-                    v.getContext().getContentResolver().update(uri, values, null, null);
-                    quantityTv.setText(quantity + "");
-            }});
+                ContentValues values = new ContentValues();
+                int quantity = Integer.parseInt(quantityTv.getText().toString().trim());
+                quantity++;
+                values.put(QUANTITY, quantity);
+                Uri uri = Uri.withAppendedPath(CONTENT_URI, id);
+                v.getContext().getContentResolver().update(uri, values, null, null);
+                quantityTv.setText(quantity + "");
+            }
+        });
 
 
     }

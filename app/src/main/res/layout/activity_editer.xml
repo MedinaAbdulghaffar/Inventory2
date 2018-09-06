@@ -3,10 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="28dp"
     android:orientation="vertical"
-    tools:context=".InsertionActivity">
-
+    tools:context=".EditerActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +21,7 @@
             android:text="@string/product_name" />
 
         <EditText
-            android:id="@+id/product_name_et"
+            android:id="@+id/edit_product_name_et"
             android:layout_width="164dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp" />
@@ -43,7 +41,7 @@
             android:text="@string/price" />
 
         <EditText
-            android:id="@+id/price_et"
+            android:id="@+id/edit_price_et"
             android:layout_width="164dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp" />
@@ -63,7 +61,7 @@
             android:text="@string/quantity" />
 
         <EditText
-            android:id="@+id/quantity_et"
+            android:id="@+id/edit_quantity_et"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp" />
@@ -83,7 +81,7 @@
             android:text="@string/supplier_name" />
 
         <EditText
-            android:id="@+id/supplier_name_et"
+            android:id="@+id/edit_supplier_name_et"
             android:layout_width="164dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp" />
@@ -103,14 +101,14 @@
             android:text="@string/supplier_phone_number" />
 
         <EditText
-            android:id="@+id/supplier_phone_number_et"
+            android:id="@+id/edit_supplier_phone_number_et"
             android:layout_width="164dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/save_b"
+        android:id="@+id/save_changes_b"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
